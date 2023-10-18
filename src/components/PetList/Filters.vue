@@ -2,7 +2,8 @@
 import store from '../../../store'
 
 const search = (filter) => {
-  if (!filter) {
+  if (filter === store.getters['filters/getUsedFilter'] || !filter) {
+    store.commit('filters/setFilter', null)
     store.dispatch('filters/filterPets', 'available,pending,sold')
     return
   }
@@ -12,7 +13,7 @@ const search = (filter) => {
 </script>
 
 <template>
-  <div class="relative ml-3 mr-5 flex w-[150px] flex-col">
+  <div class="relative ml-3 mr-5 flex w-[100px] flex-col">
     <div class="sticky top-0">
       <header class="mb-5 mt-5"><h5 class="text-xl">filters:</h5></header>
       <ul>

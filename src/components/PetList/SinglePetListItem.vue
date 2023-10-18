@@ -15,27 +15,56 @@ const testImageLink = (link) => {
   }
   return placeholder
 }
+
+const statusColor = () => {
+  if (props.pet.status === 'available') {
+    return '#08bf08'
+  } else if (props.pet.status === 'pending') {
+    return 'orange'
+  }
+
+  return 'red'
+}
 </script>
 
 <template>
-  <div class="m-4 w-[30%]">
-    <figure>
+  <div
+    class="group flex w-[40%] flex-col border-b-[1px] border-b-brown p-2 sm:w-[165px] md:w-[200px] xl:w-[270px]"
+  >
+    <figure class="overflow-hidden rounded-md">
       <img
         :src="testImageLink(props.pet.photoUrls)"
-        class="h-[250px] w-full object-cover"
+        class="h-[250px] w-full rounded-md object-cover group-hover:scale-105"
         :alt="props.pet.name"
       />
     </figure>
-    <header v-if="props.pet.name" class="mt-2">
+    <header v-if="props.pet.name" class="mb-4 mt-2">
       <h4 class="text-center text-xl">{{ props.pet.name }}</h4>
     </header>
-    <div class="mt-4 flex flex-row items-center justify-between px-3">
-      <div v-if="props.petcategory && props.pet.category.name">
-        category: {{ props.pet.category.name }}
+    <div class="mt-auto flex flex-col px-3 xl:flex-row xl:items-end xl:justify-between">
+      <div class="flex-1">
+        <!-- <span v-if="props.pet.category && props.pet.category.name" class="block"
+          >category: {{ props.pet.category.name }}</span
+        > -->
+
+        <span
+          class="block text-center text-xl font-bold xl:text-start"
+          :style="`color:${statusColor()}`"
+          v-if="props.pet.status"
+          >{{ props.pet.status }}</span
+        >
       </div>
-      <button type="button" class="ml-auto rounded-md bg-brown px-3 py-2 text-white">
-        Buy now!
-      </button>
+      <div class="mt-5 flex-1 self-center xl:float-right xl:ml-auto xl:mt-0 xl:self-end">
+        <button
+          v-if="props.pet.status != 'sold'"
+          type="button"
+          class="block rounded-md px-3 py-2 text-white xl:ml-auto"
+          :class="props.pet.status === 'available' ? 'bg-brown' : 'bg-gray-300 line-through'"
+          :disabled="props.pet.status === 'pending'"
+        >
+          Buy now!
+        </button>
+      </div>
     </div>
   </div>
 </template>

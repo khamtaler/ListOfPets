@@ -17,17 +17,20 @@ const loadMorePets = () => {
 </script>
 
 <template>
-  <div class="flex min-h-[70vh] w-full flex-col border-l-2 border-[#8e5823]">
-    <header>
-      <h2 class="text-center text-3xl">View our pets!</h2>
-    </header>
+  <div class="flex min-h-[70vh] w-full flex-col border-l-2 border-[#8e5823] px-2">
+    <!-- <header>
+      <h2 class="text-3xl">Search trough our pets below</h2>
+    </header> -->
     <div>
-      <ul v-if="pets.length > 0" class="mt-5 flex flex-row flex-wrap justify-between">
+      <ul
+        v-if="pets.length > 0"
+        class="mt-5 flex flex-row flex-wrap items-stretch justify-around gap-8"
+      >
         <SinglePetListItem v-for="(pet, index) in pets" :key="index" :pet="pet" />
       </ul>
-      <h6 v-else>
+      <h6 v-else class="mt-5 text-center">
         We are sorry, currently there are no pets with
-        <span>{{ store.state.filters.usedFilter }} </span> status
+        <span>{{ store.state.filters.usedFilter }} </span> status &#128531;
       </h6>
     </div>
     <button

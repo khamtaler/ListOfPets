@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.brownSvg {
+  filter: invert(19%) sepia(16%) saturate(2229%) hue-rotate(349deg) brightness(92%) contrast(91%);
+}
