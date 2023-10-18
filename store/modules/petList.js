@@ -1,4 +1,5 @@
 const petList = {
+  namespaced: true,
   state: {
     searchedPets: []
   },

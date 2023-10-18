@@ -4,23 +4,15 @@ import { computed, onMounted } from 'vue'
 import SinglePetListItem from './SinglePetListItem.vue'
 
 onMounted(() => {
-  store.dispatch('getAllPets')
+  store.dispatch('filters/getAllPets')
 })
 
 const pets = computed(() => {
-  console.log('computed')
-  console.log(store.state.petList.searchedPets)
-  console.log(store.state.petList.searchedPets.slice(0, store.state.filters.itemsToShow))
-  console.log(store.state.filters.itemsToShow)
-  return store.state.petList.searchedPets.slice(0, store.state.filters.itemsToShow)
+  return store.getters['petList/getSearchedPets'].slice(0, store.state.filters.itemsToShow)
 })
 
-const log = () => {
-  console.log(pets.value)
-}
-
 const loadMorePets = () => {
-  store.commit('addMorePets')
+  store.commit('filters/addMorePets')
 }
 </script>
 
@@ -29,7 +21,6 @@ const loadMorePets = () => {
     <header>
       <h2 class="text-center text-3xl">View our pets!</h2>
     </header>
-    <button @click="log">log</button>
     <div>
       <ul v-if="pets.length > 0" class="mt-5 flex flex-row flex-wrap justify-between">
         <SinglePetListItem v-for="(pet, index) in pets" :key="index" :pet="pet" />

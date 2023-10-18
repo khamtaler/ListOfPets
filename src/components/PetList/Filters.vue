@@ -3,11 +3,11 @@ import store from '../../../store'
 
 const search = (filter) => {
   if (!filter) {
-    store.dispatch('filterPets', 'available,pending,sold')
+    store.dispatch('filters/filterPets', 'available,pending,sold')
     return
   }
-  store.commit('setFilter', filter)
-  store.dispatch('filterPets', filter)
+  store.commit('filters/setFilter', filter)
+  store.dispatch('filters/filterPets', filter)
 }
 </script>
 

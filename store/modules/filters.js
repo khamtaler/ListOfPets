@@ -1,6 +1,7 @@
 import axiosClient from '../../axiosClient'
 
 const filters = {
+  namespaced: true,
   state: {
     usedFilter: '',
     itemsToShow: 12
@@ -24,12 +25,12 @@ const filters = {
   actions: {
     filterPets({ commit }, payload) {
       axiosClient.get(`/pet/findByStatus?status=${payload}`).then(({ data }) => {
-        commit('setPetList', data)
+        commit('petList/setPetList', data, { root: true })
       })
     },
     getAllPets({ commit }) {
       axiosClient.get(`/pet/findByStatus?status=available,pending,sold`).then(({ data }) => {
-        commit('setPetList', data)
+        commit('petList/setPetList', data, { root: true })
       })
     }
   }

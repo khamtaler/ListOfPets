@@ -5,7 +5,7 @@ import petList from './modules/petList'
 const store = createStore({
   modules: {
     filters: filters,
-    petList
+    petList: petList
   }
 })
 
