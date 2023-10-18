@@ -4,7 +4,6 @@ import placeholder from '../../assets/images/placeholder.png'
 const props = defineProps({
   pet: {}
 })
-const { category, name, photoUrls } = props.pet
 
 const testImageLink = (link) => {
   if (
@@ -21,13 +20,19 @@ const testImageLink = (link) => {
 <template>
   <div class="m-4 w-[30%]">
     <figure>
-      <img :src="testImageLink(photoUrls)" class="h-[250px] w-full object-cover" :alt="name" />
+      <img
+        :src="testImageLink(props.pet.photoUrls)"
+        class="h-[250px] w-full object-cover"
+        :alt="props.pet.name"
+      />
     </figure>
-    <header v-if="name" class="mt-2">
-      <h4 class="text-center text-xl">{{ name }}</h4>
+    <header v-if="props.pet.name" class="mt-2">
+      <h4 class="text-center text-xl">{{ props.pet.name }}</h4>
     </header>
     <div class="mt-4 flex flex-row items-center justify-between px-3">
-      <div v-if="category && category.name">category: {{ category.name }}</div>
+      <div v-if="props.petcategory && props.pet.category.name">
+        category: {{ props.pet.category.name }}
+      </div>
       <button type="button" class="ml-auto rounded-md bg-brown px-3 py-2 text-white">
         Buy now!
       </button>

@@ -3,7 +3,7 @@ import store from '../../../store'
 
 const search = (filter) => {
   if (!filter) {
-    store.dispatch('getAllPets')
+    store.dispatch('filterPets', 'available,pending,sold')
     return
   }
   store.commit('setFilter', filter)
@@ -19,21 +19,21 @@ const search = (filter) => {
         <li @click="search('available')" class="my-2 cursor-pointer">
           <span
             class="relative py-1 after:absolute after:bottom-[-2px] after:left-0 after:h-[4px] after:origin-left after:rounded-r-xl after:bg-[#8e5823] after:transition-all after:duration-500 after:ease-[cubic-bezier(.11,1.51,.58,-0.48)] after:content-['']"
-            :class="store.state.usedFilter === 'available' ? ' after:w-full' : 'after:w-0'"
+            :class="store.state.filters.usedFilter === 'available' ? ' after:w-full' : 'after:w-0'"
             >Available</span
           >
         </li>
         <li @click="search('pending')" class="my-2 cursor-pointer">
           <span
             class="relative py-1 after:absolute after:bottom-[-2px] after:left-0 after:h-[4px] after:origin-left after:rounded-r-xl after:bg-[#8e5823] after:transition-all after:duration-500 after:ease-[cubic-bezier(.11,1.51,.58,-0.48)] after:content-['']"
-            :class="store.state.usedFilter === 'pending' ? ' after:w-full' : 'after:w-0'"
+            :class="store.state.filters.usedFilter === 'pending' ? ' after:w-full' : 'after:w-0'"
             >Pending</span
           >
         </li>
         <li @click="search('sold')" class="my-2 cursor-pointer">
           <span
             class="relative py-1 after:absolute after:bottom-[-2px] after:left-0 after:h-[4px] after:origin-left after:rounded-r-xl after:bg-[#8e5823] after:transition-all after:duration-500 after:ease-[cubic-bezier(.11,1.51,.58,-0.48)] after:content-['']"
-            :class="store.state.usedFilter === 'sold' ? ' after:w-full' : 'after:w-0'"
+            :class="store.state.filters.usedFilter === 'sold' ? ' after:w-full' : 'after:w-0'"
             >Sold</span
           >
         </li>

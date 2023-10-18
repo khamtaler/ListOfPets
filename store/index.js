@@ -1,14 +1,12 @@
 import { createStore } from 'vuex'
-import state from './state'
-import * as mutations from './mutations'
-import * as getters from './getters'
-import * as actions from './actions'
+import filters from './modules/filters'
+import petList from './modules/petList'
 
 const store = createStore({
-  state,
-  actions,
-  mutations,
-  getters
+  modules: {
+    filters: filters,
+    petList
+  }
 })
 
 export default store
