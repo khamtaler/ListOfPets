@@ -1,6 +1,6 @@
 <script setup>
 import placeholder from '../../assets/images/placeholder.png'
-
+import BuyButton from '../base/BuyButton.vue'
 const props = defineProps({
   pet: {}
 })
@@ -53,7 +53,6 @@ const statusColor = () => {
         <!-- <span v-if="props.pet.category && props.pet.category.name" class="block"
           >category: {{ props.pet.category.name }}</span
         > -->
-
         <span
           class="block text-center text-[18px] font-bold"
           :style="`color:${statusColor()}`"
@@ -63,15 +62,7 @@ const statusColor = () => {
         >
       </div>
       <div class="mt-5 flex-1 self-center xl:float-right xl:ml-auto xl:mt-0 xl:self-end">
-        <button
-          v-if="props.pet.status != 'sold'"
-          type="button"
-          class="block rounded-md px-3 py-2 text-white xl:ml-auto"
-          :class="props.pet.status === 'available' ? 'bg-brown' : 'bg-gray-300 line-through'"
-          :disabled="props.pet.status === 'pending'"
-        >
-          Buy now!
-        </button>
+        <BuyButton :petId="props.pet.id" :petStatus="props.pet.status" />
       </div>
     </div>
   </div>

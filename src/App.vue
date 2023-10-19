@@ -1,6 +1,7 @@
 <script setup>
-import Petlist from './components/PetList/PetList.vue'
+import Petlist from './components/petList/PetList.vue'
 import Paw from './assets/icons/Paw.vue'
+import BuyButton from './components/base/BuyButton.vue'
 </script>
 
 <template>
@@ -10,6 +11,7 @@ import Paw from './assets/icons/Paw.vue'
         <Paw /><span class="px-5"> Welcome in our pet store</span> <Paw />
       </h1>
     </header>
+    <!-- <BuyButton /> -->
     <Petlist class="relative" />
   </div>
 </template>

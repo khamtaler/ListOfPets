@@ -3,13 +3,13 @@ import store from '../../../store'
 
 const search = (filter) => {
   if (filter === store.getters['filters/getUsedFilter'] || !filter) {
-    // store.commit('filters/setFilter', null)
-    // store.dispatch('filters/filterPets', 'available,pending,sold')
+    store.commit('filters/setFilter', null)
+    store.dispatch('filters/filterPets', 'available,pending,sold')
     return
   }
   window.scrollTo({ top: 0, behavior: 'smooth' })
-  // store.commit('filters/setFilter', filter)
-  // store.dispatch('filters/filterPets', filter)
+  store.commit('filters/setFilter', filter)
+  store.dispatch('filters/filterPets', filter)
 }
 </script>
 

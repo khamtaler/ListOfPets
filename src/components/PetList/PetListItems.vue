@@ -4,7 +4,7 @@ import { computed, onMounted } from 'vue'
 import SinglePetListItem from './SinglePetListItem.vue'
 
 onMounted(() => {
-  // store.dispatch('filters/getAllPets')
+  store.dispatch('filters/getAllPets')
 })
 
 const pets = computed(() => {
