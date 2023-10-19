@@ -16,13 +16,12 @@ const showWarning = ref(false)
 function order() {
   if (shipDate.value >= currentDate) {
     let isAvaiable = null
-    console.log(props.petId)
+
     axiosClient
       .get(`/pet/${props.petId}`)
       .then(({ data }) => {
-        console.log(data.status)
         data.status === 'available' ? (isAvaiable = true) : (isAvaiable = false)
-        console.log(isAvaiable)
+
         if (isAvaiable) {
           const shipDateValidated = new Date(shipDate.value).toISOString()
 

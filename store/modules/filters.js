@@ -30,7 +30,7 @@ const filters = {
     },
     getAllPets({ commit }) {
       axiosClient.get(`/pet/findByStatus?status=available,pending,sold`).then(({ data }) => {
-        console.log(data)
+
         commit('petList/setPetList', data, { root: true })
       })
     }
