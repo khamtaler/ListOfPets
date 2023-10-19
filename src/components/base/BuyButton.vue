@@ -39,7 +39,6 @@ function order() {
             .then((res) => {
               if (res.status === 200) {
                 store.dispatch('filters/getAllPets')
-                window.scrollTo({ top: 0, behavior: 'smooth' })
                 window.alert('Your order has been placed')
               }
             })
@@ -81,7 +80,7 @@ const openModal = () => (isOpen.value = true)
       v-if="props.petStatus != 'sold'"
       type="button"
       @click="openModal"
-      class="block rounded-md px-3 py-2 text-white xl:ml-auto"
+      class="block rounded-md px-2 py-1 text-base text-white md:px-3 md:py-2 md:text-xl xl:ml-auto"
       :class="props.petStatus === 'available' ? 'bg-brown' : 'bg-gray-300 line-through'"
       :disabled="props.petStatus === 'pending'"
     >
@@ -114,7 +113,7 @@ const openModal = () => (isOpen.value = true)
             leave-to="opacity-0 scale-95"
           >
             <DialogPanel
-              class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left text-center align-middle shadow-xl transition-all"
+              class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-center align-middle shadow-xl transition-all"
             >
               <DialogTitle as="h3" class="text-lg font-medium leading-6 text-gray-900">
                 Finish your order
