@@ -34,22 +34,30 @@ const statusColor = () => {
     <figure class="overflow-hidden rounded-md">
       <img
         :src="testImageLink(props.pet.photoUrls)"
-        class="h-[250px] w-full rounded-md object-cover group-hover:scale-105"
+        class="aspect-square w-full rounded-md object-cover group-hover:scale-105"
         :alt="props.pet.name"
       />
     </figure>
     <header v-if="props.pet.name" class="mb-4 mt-2">
       <h4 class="text-center text-xl">{{ props.pet.name }}</h4>
     </header>
-    <div class="mt-auto flex flex-col px-3 xl:flex-row xl:items-end xl:justify-between">
+    <div
+      class="mt-auto flex flex-col px-3"
+      :class="
+        props.pet.status === 'sold'
+          ? 'justify-center'
+          : 'xl:flex-row xl:items-end xl:justify-between'
+      "
+    >
       <div class="flex-1">
         <!-- <span v-if="props.pet.category && props.pet.category.name" class="block"
           >category: {{ props.pet.category.name }}</span
         > -->
 
         <span
-          class="block text-center text-xl font-bold xl:text-start"
+          class="block text-center text-[18px] font-bold"
           :style="`color:${statusColor()}`"
+          :class="props.pet.status === 'sold' ? '' : 'xl:text-start'"
           v-if="props.pet.status"
           >{{ props.pet.status }}</span
         >

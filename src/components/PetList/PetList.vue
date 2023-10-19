@@ -4,7 +4,7 @@ import PetListItems from './PetListItems.vue'
 </script>
 
 <template>
-  <div class="my-10 flex flex-row">
+  <div class="my-10 flex flex-col md:flex-row">
     <Filters />
     <PetListItems />
   </div>

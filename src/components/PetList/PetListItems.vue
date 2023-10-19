@@ -4,7 +4,7 @@ import { computed, onMounted } from 'vue'
 import SinglePetListItem from './SinglePetListItem.vue'
 
 onMounted(() => {
-  store.dispatch('filters/getAllPets')
+  // store.dispatch('filters/getAllPets')
 })
 
 const pets = computed(() => {
@@ -17,7 +17,7 @@ const loadMorePets = () => {
 </script>
 
 <template>
-  <div class="flex min-h-[70vh] w-full flex-col border-l-2 border-[#8e5823] px-2">
+  <div class="flex min-h-[70vh] w-full flex-col px-2">
     <!-- <header>
       <h2 class="text-3xl">Search trough our pets below</h2>
     </header> -->
