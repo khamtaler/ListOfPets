@@ -1,10 +1,11 @@
-import axiosClient from '../../axiosClient'
+import axiosClient from '../../services/axiosClient'
+const MAX_ITEMS_PER_PAGE = 12
 
 const filters = {
   namespaced: true,
   state: {
     usedFilter: '',
-    itemsToShow: 12
+    itemsToShow: MAX_ITEMS_PER_PAGE
   },
   getters: {
     getUsedFilter(state) {
@@ -14,12 +15,12 @@ const filters = {
   mutations: {
     setFilter(state, payload) {
       state.usedFilter = payload
-      if (state.itemsToShow != 12) {
-        state.itemsToShow = 12
+      if (state.itemsToShow != MAX_ITEMS_PER_PAGE) {
+        state.itemsToShow = MAX_ITEMS_PER_PAGE
       }
     },
     addMorePets(state) {
-      state.itemsToShow += 12
+      state.itemsToShow += MAX_ITEMS_PER_PAGE
     }
   },
   actions: {
@@ -30,7 +31,6 @@ const filters = {
     },
     getAllPets({ commit }) {
       axiosClient.get(`/pet/findByStatus?status=available,pending,sold`).then(({ data }) => {
-
         commit('petList/setPetList', data, { root: true })
       })
     }

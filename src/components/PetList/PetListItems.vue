@@ -1,5 +1,5 @@
 <script setup>
-import store from '../../../store'
+import store from '../../store'
 import { computed, onMounted } from 'vue'
 import SinglePetListItem from './SinglePetListItem.vue'
 

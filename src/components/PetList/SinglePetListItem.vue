@@ -1,6 +1,6 @@
 <script setup>
-import placeholder from '../../assets/images/placeholder.png'
-import BuyButton from '../base/BuyButton.vue'
+import placeholder from '../../assets/images/placeholder.webp'
+import BuyButton from './BuyButton.vue'
 const props = defineProps({
   pet: {}
 })
@@ -10,20 +10,24 @@ const testImageLink = (link) => {
     /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/.test(
       link
     )
-  ) {
-    return link
-  }
-  return placeholder
+  )
+    return true
+  else return false
+}
+const getImage = (link, test) => {
+  return test(link) ? link : placeholder
 }
 
 const statusColor = () => {
   if (props.pet.status === 'available') {
     return '#08bf08'
-  } else if (props.pet.status === 'pending') {
+  }
+  if (props.pet.status === 'pending') {
     return 'orange'
   }
-
-  return 'red'
+  if (props.pet.status === 'sold') {
+    return 'red'
+  }
 }
 </script>
 
@@ -33,7 +37,7 @@ const statusColor = () => {
   >
     <figure class="overflow-hidden rounded-md">
       <img
-        :src="testImageLink(props.pet.photoUrls)"
+        :src="getImage(props.pet.photoUrls, testImageLink)"
         class="aspect-square w-full rounded-md object-cover group-hover:scale-105"
         :alt="props.pet.name"
       />

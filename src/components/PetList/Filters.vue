@@ -1,5 +1,5 @@
 <script setup>
-import store from '../../../store'
+import store from '../../store'
 
 const search = (filter) => {
   if (filter === store.getters['filters/getUsedFilter'] || !filter) {

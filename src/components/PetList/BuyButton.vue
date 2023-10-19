@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from 'vue'
 import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogTitle } from '@headlessui/vue'
-import axiosClient from '../../../axiosClient'
-import store from '../../../store'
+import axiosClient from '../../services/axiosClient'
+import store from '../../store'
 
 const props = defineProps({
   petId: Number,
@@ -15,16 +15,12 @@ const currentDate = new Date().toISOString().split('T')[0]
 const showWarning = ref(false)
 function order() {
   if (shipDate.value >= currentDate) {
-    let isAvaiable = null
-
     axiosClient
       .get(`/pet/${props.petId}`)
       .then(({ data }) => {
-        data.status === 'available' ? (isAvaiable = true) : (isAvaiable = false)
-
-        if (isAvaiable) {
+        const isAvailable = data.status === 'available' ? true : false
+        if (isAvailable) {
           const shipDateValidated = new Date(shipDate.value).toISOString()
-
           axiosClient
             .post(`/store/order`, {
               id: Math.random(1291409235343465),
@@ -68,13 +64,6 @@ const openModal = () => (isOpen.value = true)
 
 <template>
   <div class="inset-0 flex items-center justify-center">
-    <!-- <button
-      type="button"
-      
-      class="rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-    >
-      Buy now!
-    </button> -->
     <button
       v-if="props.petStatus != 'sold'"
       type="button"
@@ -119,7 +108,12 @@ const openModal = () => (isOpen.value = true)
               </DialogTitle>
               <div class="mt-2">
                 <p class="text-sm text-gray-500">when should we ship your pet?</p>
-                <input type="date" v-model="shipDate" :min="currentDate" />
+                <input
+                  type="date"
+                  v-model="shipDate"
+                  :min="currentDate"
+                  class="my-2 rounded border border-brown p-1"
+                />
                 <span v-if="showWarning" class="block text-red-600">
                   Sorry, You cannot order on this day
                 </span>
@@ -128,7 +122,7 @@ const openModal = () => (isOpen.value = true)
               <div class="mt-4">
                 <button
                   type="button"
-                  class="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                  class="inline-flex justify-center rounded-md border-2 border-brown bg-white px-4 py-2 text-sm font-medium text-brown hover:bg-orange-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brown focus-visible:ring-offset-2"
                   @click="order"
                 >
                   Order
