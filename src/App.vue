@@ -10,7 +10,6 @@ import Paw from './assets/icons/Paw.vue'
         <Paw /><span class="px-5"> Welcome in our pet store</span> <Paw />
       </h1>
     </header>
-    <!-- <BuyButton /> -->
     <Petlist />
     <footer></footer>
   </main>

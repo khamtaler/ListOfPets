@@ -18,9 +18,6 @@ const loadMorePets = () => {
 
 <template>
   <div class="flex min-h-[70vh] w-full flex-col px-2">
-    <!-- <header>
-      <h2 class="text-3xl">Search trough our pets below</h2>
-    </header> -->
     <div>
       <ul
         v-if="pets.length > 0"

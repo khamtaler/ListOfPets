@@ -33,7 +33,7 @@ const statusColor = () => {
 
 <template>
   <div
-    class="group flex w-[40%] flex-col border-b-[1px] border-b-brown p-2 sm:w-[165px] md:w-[200px] xl:w-[270px]"
+    class="sm:w-[160 px] group flex w-[40%] flex-col border-b-[1px] border-b-brown p-2 md:w-[200px] xl:w-[270px]"
   >
     <figure class="overflow-hidden rounded-md">
       <img
@@ -54,9 +54,6 @@ const statusColor = () => {
       "
     >
       <div class="flex-1">
-        <!-- <span v-if="props.pet.category && props.pet.category.name" class="block"
-          >category: {{ props.pet.category.name }}</span
-        > -->
         <span
           class="block text-center text-[14px] font-bold md:text-[18px]"
           :style="`color:${statusColor()}`"
