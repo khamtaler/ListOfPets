@@ -11,7 +11,7 @@ const pets = computed(() => {
   return store.getters['petList/getSearchedPets'].slice(0, store.state.filters.itemsToShow)
 })
 
-const loadMorePets = () => {
+const loadMorePets = async () => {
   store.commit('filters/addMorePets')
 }
 </script>
@@ -25,11 +25,12 @@ const loadMorePets = () => {
       >
         <SinglePetListItem v-for="(pet, index) in pets" :key="index" :pet="pet" />
       </ul>
-      <h6 v-else class="mt-5 text-center">
+      <h6 v-if="pets.length <= 0" class="mt-5 text-center">
         We are sorry, currently there are no pets with
         <span>{{ store.state.filters.usedFilter }} </span> status &#128531;
       </h6>
     </div>
+
     <button
       type="button"
       class="mb-3 mt-7 text-xl"
